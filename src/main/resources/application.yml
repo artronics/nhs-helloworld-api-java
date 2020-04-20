@@ -1,0 +1,26 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      cookie:
+        name: UISESSION
+spring:
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+          custom-client:
+            client-id: ${CLIENT_ID}
+            client-secret: ${CLIENT_SECRET}
+            client-name: Auth Server
+            provider: custom-provider
+            redirect-uri-template: https://nhsd-apim-testing-internal-dev.herokuapp.com/callback
+            client-authentication-method: basic
+            authorization-grant-type: authorization_code
+        provider:
+          custom-provider:
+            token-uri: https://internal-dev.api.service.nhs.uk/oauth2/token
+            authorization-uri: https://internal-dev.api.service.nhs.uk/oauth2/authorize
+
